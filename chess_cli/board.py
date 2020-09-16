@@ -8,14 +8,14 @@ class board:
     def __init__(self):
         # set the initial board 
         self.board = [
-            ['8  ', rook.draw('b'), knight.draw('b'), bishop.draw('b'),   queen.draw('b'),   king.draw('b'),   bishop.draw('b'),   knight.draw('b'),   rook.draw('b')],
-            ['7  ', pawn.draw('b'),   pawn.draw('b'),   pawn.draw('b'),   pawn.draw('b'),   pawn.draw('b'),   pawn.draw('b'),   pawn.draw('b'),   pawn.draw('b')],
+            ['8  ', rook.draw('b'), knight.draw('b'), bishop.draw('b'), queen.draw('b'), king.draw('b'), bishop.draw('b'), knight.draw('b'), rook.draw('b')],
+            ['7  ', pawn.draw('b'), pawn.draw('b'), pawn.draw('b'), pawn.draw('b'), pawn.draw('b'), pawn.draw('b'), pawn.draw('b'), pawn.draw('b')],
             ['6  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
             ['5  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
             ['4  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
             ['3  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
-            ['2  ', pawn.draw('w'),   pawn.draw('w'),   pawn.draw('w'),   pawn.draw('w'),   pawn.draw('w'),   pawn.draw('w'),   pawn.draw('w'),   pawn.draw('w')],
-            ['1  ', rook.draw('w'),   knight.draw('w'),   bishop.draw('w'),   queen.draw('w'),   king.draw('w'),   bishop.draw('w'),   knight.draw('w'),   rook.draw('w')],
+            ['2  ', pawn.draw('w'), pawn.draw('w'), pawn.draw('w'), pawn.draw('w'), pawn.draw('w'), pawn.draw('w'), pawn.draw('w'), pawn.draw('w')],
+            ['1  ', rook.draw('w'), knight.draw('w'), bishop.draw('w'), queen.draw('w'), king.draw('w'), bishop.draw('w'), knight.draw('w'), rook.draw('w')],
             ['', '', '', '', '', '', '', ''],
             ['   ', 'a ', 'b ', 'c ', 'd ', 'e ', 'f ', 'g ', 'h']
         ]

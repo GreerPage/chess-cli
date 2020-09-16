@@ -80,11 +80,28 @@ class r():
         # find pieces in path
         #horizontal move
         if current_x != new_x:
-            if current_x < new_x: b, s = new_x, current_x
+            if current_x < new_x: b, s = new_x+1, current_x+1
             if new_x < current_x: b, s = current_x, new_x
-            for i in range(s+1, b+1):
-                if board[current_y][i] != '. ':
+            for i in range(s, b):
+                if i == new_x:
+                    continue
+                elif board[current_y][i] != '. ':
                     return False
+            if board[current_y][new_x] != '. ' and board[current_y][new_x].isupper() == upper:
+                return False
+            return True
+        #vertical move
+        if current_y != new_y:
+            if current_y < new_y: b, s = new_y+1, current_y+1
+            if new_y < current_y: b, s = current_y, new_y
+            for i in range(s, b):
+                if i == new_y:
+                    continue
+                elif board[i][current_x] != '. ':
+                    return False
+            if board[new_y][current_x] != '. ' and board[new_y][current_x].isupper() == upper:
+                return False
+            return True
         return True
 
 # class for knight piece
