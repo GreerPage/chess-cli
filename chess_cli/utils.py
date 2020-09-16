@@ -21,3 +21,6 @@ def y_axis_to_index(y):
     if y == 6: return 2
     if y == 7: return 1
     if y == 8: return 0
+
+def coords_to_index(coords):
+    return [x_axis_to_index(coords[0]), y_axis_to_index(coords[1])]
