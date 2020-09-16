@@ -24,7 +24,7 @@ class board:
     def get_current_board(self):
         return self.board_to_string(self.board)
 
-    #set the matrix representing the board into a string to print       
+    # set the matrix representing the board into a string to print       
     def board_to_string(self, matrix):
         string_board = ''
         for row in matrix:
