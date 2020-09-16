@@ -1,7 +1,7 @@
 #define board
 
 from .pieces import pawn, rook, bishop, knight, king, queen
-from .utils import x_axis_to_index, y_axis_to_index
+from .utils import coords_to_index
 
 #class for the game board
 class board:   
@@ -37,10 +37,8 @@ class board:
     
     # update the board matrix when a move is determined to be valid
     def update_board(self, current, new):
-        current_index_x = x_axis_to_index(current[0])
-        current_index_y = y_axis_to_index(current[1])
-        new_index_x = x_axis_to_index(new[0])
-        new_index_y = y_axis_to_index(new[1])
+        current_index_x, current_index_y  = coords_to_index(current)
+        new_index_x, new_index_y = coords_to_index(new)
         current_location = self.board[current_index_y][current_index_x]
         new_location = self.board[new_index_y][new_index_x]
         self.board[new_index_y][new_index_x] = current_location

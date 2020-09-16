@@ -1,4 +1,5 @@
 # define pieces
+from .utils import coords_to_index, global_move_checker
 
 # class for pawn piece
 class p():
@@ -7,10 +8,11 @@ class p():
         if color == 'w': return 'P '
         if color == 'b': return 'p '
 
-    # logic piece moves — check if moves are valid
+    # logic for piece moves — check if moves are valid
     def move(self, board, current, new):
-        #lots of math
-        pass
+        current_x, current_y = coords_to_index(current)
+        new_x, new_y = coords_to_index(new)
+        return global_move_checker(current_x, current_y, new_x, new_y, board)
 
 # class for rook piece
 class r():
@@ -19,7 +21,7 @@ class r():
         if color == 'w': return 'R '
         if color == 'b': return 'r ' 
 
-    # logic piece moves — check if moves are valid
+    # logic for piece moves — check if moves are valid
     def move(self, board, current, new):
         #lots of math
         pass
@@ -31,7 +33,7 @@ class t():
         if color == 'w': return 'T '
         if color == 'b': return 't '
 
-    # logic piece moves — check if moves are valid
+    # logic for piece moves — check if moves are valid
     def move(self, board, current, new):
         #lots of math
         pass
@@ -43,7 +45,7 @@ class b():
         if color == 'w': return 'B '
         if color == 'b': return 'b '
 
-    # logic piece moves — check if moves are valid
+    # logic for piece moves — check if moves are valid
     def move(self, board, current, new):
         #lots of math
         pass
@@ -55,7 +57,7 @@ class q():
         if color == 'w': return 'Q '
         if color == 'b': return 'q '
 
-    # logic piece moves — check if moves are valid
+    # logic for piece moves — check if moves are valid
     def move(self, board, current, new):
         #lots of math
         pass
@@ -67,7 +69,7 @@ class k():
         if color == 'w': return 'K '
         if color == 'b': return 'k '
 
-    # logic piece moves — check if moves are valid
+    # logic for piece moves — check if moves are valid
     def move(self, board, current, new):
         #lots of math
         pass
