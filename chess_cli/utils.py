@@ -27,7 +27,7 @@ def coords_to_index(coords):
     return [x_axis_to_index(coords[0]), y_axis_to_index(coords[1])]
 
 # function to check for universal invalidations for piece movement
-def global_move_checker(c_x, c_y, n_x, n_y, b):
+'''def global_move_checker(c_x, c_y, n_x, n_y, b):
 
     # check if piece moves forward
     if c_x == n_x and c_y > n_y:
@@ -65,4 +65,4 @@ def global_move_checker(c_x, c_y, n_x, n_y, b):
         if b[chk][chk1] != '. ':
             return False     
 
-    return True
+    return True'''

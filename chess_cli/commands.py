@@ -6,4 +6,7 @@ b = board()
 
 # function to initiatethe moving of a piece
 def move_piece(type, current, new):
-    return pawn.move(b.board, ['b', 2], ['a', 2])
+    x, y = ['b', 4], ['b', 5]
+    if pawn.move(b.board, x, y, True):
+        return b.update_board(x, y)
+    return False
