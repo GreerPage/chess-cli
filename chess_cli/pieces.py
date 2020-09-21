@@ -1,11 +1,104 @@
 # define pieces
 from .utils import coords_to_index
 
+# white pawn
+class P():
+    def __init__(self):
+        self.moves = []
+        self.passat = False
+    
+    def __str__(self):
+        return 'P'
+
+# black pawn
+class p():
+    def __init__(self):
+        self.moves = []
+        self.passat = False
+    
+    def __str__(self):
+        return 'P'
+
+# white rook
+class R():
+    def __init__(self):
+        self.moves = []
+        self.castle = True
+    
+    def __str__(self):
+        return 'R'
+
+# black rook
+class r():
+    def __init__(self):
+        self.moves = []
+        self.castle = True
+    
+    def __str__(self):
+        return 'r'
+
+class T():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'T'
+
+class t():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 't'
+
+class B():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'B'
+
+class b():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'b'
+
+class Q():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'Q'
+
+class q():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'q'
+
+class K():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'K'
+
+class k():
+    def __init__(self):
+        self.moves = []
+    
+    def __str__(self):
+        return 'k'
+
+'''
 # class for pawn piece
 class p():
     # return "piece" depending on color (capital = white)
     def draw(self, color):
-        if color == 'w': return 'P '
+        if color == 'w': return 'P1'
         if color == 'b': return 'p '
 
     # logic for piece moves — check if moves are (valid pawns are hard >::( too many rules also this function is way too long fml)
@@ -153,3 +246,4 @@ class k():
         pass
 
 pawn, rook, knight, bishop, king, queen = p(), r(), t(), b(), k(), q() 
+'''
