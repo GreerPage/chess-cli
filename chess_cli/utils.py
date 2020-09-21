@@ -28,4 +28,12 @@ def coords_to_index(coords):
 
 def right_up(board, current, distance):
     c_x, c_y = coords_to_index(current)
-    return [str(board[c_y-i-1][c_x+i+1]) for i in range(distance)]
+    return [str(board[c_y-i-1][c_x+i+1]).strip() for i in range(distance)]
+
+def right_down(board, current, distance):
+    c_x, c_y = coords_to_index(current)
+    return [str(board[c_y+i+1][c_x+i+1]).strip() for i in range(distance)]
+
+def right(board, current, distance):
+    c_x, c_y = coords_to_index(current)
+    return [str(board[c_y+i+1][c_x+i+1]).strip() for i in range(distance)]
