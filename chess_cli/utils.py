@@ -26,34 +26,43 @@ def y_axis_to_index(y):
 def coords_to_index(coords):
     return [x_axis_to_index(coords[0]), y_axis_to_index(coords[1])]
 
+# get right up path
 def right_up(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y-i-1][c_x+i+1]).strip() for i in range(distance)]
 
+# get right down path
 def right_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y+i+1][c_x+i+1]).strip() for i in range(distance)]
 
+
+# get right path
 def right(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y][c_x+i+1]).strip() for i in range(distance)]
 
+# get left path
 def left(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y][c_x-i]).strip() for i in range(1, distance+1)]
 
+# get up path
 def up(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y-i-1][c_x]).strip() for i in range(distance)]
 
+# get down path
 def down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y+i+1][c_x]).strip() for i in range(distance)]
 
+# get left up path
 def left_up(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y-i][c_x-i]).strip() for i in range(1, distance+1)]
 
+# get left down path
 def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y+i][c_x-i]).strip() for i in range(1, distance+1)]
