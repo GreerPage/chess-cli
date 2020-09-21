@@ -13,6 +13,7 @@ def x_axis_to_index(x):
 
 # take board y value and turn return a equivalent value for the matrix
 def y_axis_to_index(y):
+    y = int(y)
     if y == 1: return 7
     if y == 2: return 6
     if y == 3: return 5

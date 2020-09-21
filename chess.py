@@ -1,10 +1,14 @@
-from chess_cli import board, move_piece
+#!/usr/bin/env python3
+# file for starting game
+
+from chess_cli import board, game
+
 b = board()
 
 def main():
     b.draw()
-    print(move_piece('a', 's', 'a'))
-    # calls for cli to activate and that will run from there ( this is all this file needs )
+    g = game(b)
+    g.cli()
 
 if __name__=='__main__':
     main()
