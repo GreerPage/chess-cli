@@ -25,3 +25,12 @@ def y_axis_to_index(y):
 # take x and y and return corresponding indices
 def coords_to_index(coords):
     return [x_axis_to_index(coords[0]), y_axis_to_index(coords[1])]
+
+def right_up(board, current, distance):
+    c_x, c_y = coords_to_index(current)
+    path = []
+    for i in range(distance):
+        c_x += 1
+        c_y -= 1
+        path.append(str(board[c_y][c_x]))
+    return path

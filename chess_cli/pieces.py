@@ -10,6 +10,9 @@ class P():
     def __str__(self):
         return 'P '
 
+    def __repr__(self):
+        return 'P'
+
 # black pawn
 class p():
     def __init__(self):
@@ -18,6 +21,9 @@ class p():
     
     def __str__(self):
         return 'p '
+
+    def __repr__(self):
+        return 'p'
 
 # white rook
 class R():
@@ -28,6 +34,9 @@ class R():
     def __str__(self):
         return 'R '
 
+    def __repr__(self):
+        return 'R'
+
 # black rook
 class r():
     def __init__(self):
@@ -37,6 +46,9 @@ class r():
     def __str__(self):
         return 'r '
 
+    def __repr__(self):
+        return 'r'
+
 # white knight
 class T():
     def __init__(self):
@@ -44,15 +56,21 @@ class T():
     
     def __str__(self):
         return 'T '
+    
+    def __repr__(self):
+        return 'T'
 
 
-# black knight
+# black knight.
 class t():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
         return 't '
+
+    def __repr__(self):
+        return 't'
 
 
 # white bishop
@@ -62,6 +80,9 @@ class B():
     
     def __str__(self):
         return 'B '
+    
+    def __repr__(self):
+        return 'B'
 
 # black bishop
 class b():
@@ -70,6 +91,9 @@ class b():
     
     def __str__(self):
         return 'b '
+
+    def __repr__(self):
+        return 'b'
 
 
 # white queen 
@@ -80,6 +104,9 @@ class Q():
     def __str__(self):
         return 'Q '
 
+    def __repr__(self):
+        return 'Q'
+
 # black queen
 class q():
     def __init__(self):
@@ -87,6 +114,9 @@ class q():
     
     def __str__(self):
         return 'q '
+
+    def __repr__(self):
+        return 'q'
 
 # white king
 class K():
@@ -96,6 +126,9 @@ class K():
     def __str__(self):
         return 'K '
 
+    def __repr__(self):
+        return 'K'
+
 # black game
 class k():
     def __init__(self):
@@ -103,6 +136,9 @@ class k():
     
     def __str__(self):
         return 'k '
+
+    def __repr__(self):
+        return 'k'
 
 '''
 # class for pawn piece
