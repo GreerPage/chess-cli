@@ -66,3 +66,6 @@ def left_up(board, current, distance):
 def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y+i][c_x-i]).strip() for i in range(1, distance+1)]
+
+def split_str(w):
+    return [l for l in w]
