@@ -41,3 +41,8 @@ def right(board, current, distance):
 def left(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [str(board[c_y][c_x-i]).strip() for i in range(1, distance+1)]
+
+def up(board, current, distance):
+    c_x, c_y = coords_to_index(current)
+    return [str(board[c_y-i-1][c_x]).strip() for i in range(distance)]
+
