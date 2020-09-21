@@ -28,9 +28,4 @@ def coords_to_index(coords):
 
 def right_up(board, current, distance):
     c_x, c_y = coords_to_index(current)
-    path = []
-    for i in range(distance):
-        c_x += 1
-        c_y -= 1
-        path.append(str(board[c_y][c_x]))
-    return path
+    return [str(board[c_y-i-1][c_x+i+1]) for i in range(distance)]
