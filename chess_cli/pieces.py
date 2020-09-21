@@ -8,7 +8,7 @@ class P():
         self.passat = False
     
     def __str__(self):
-        return 'P'
+        return 'P '
 
 # black pawn
 class p():
@@ -17,7 +17,7 @@ class p():
         self.passat = False
     
     def __str__(self):
-        return 'P'
+        return 'p '
 
 # white rook
 class R():
@@ -26,7 +26,7 @@ class R():
         self.castle = True
     
     def __str__(self):
-        return 'R'
+        return 'R '
 
 # black rook
 class r():
@@ -35,63 +35,74 @@ class r():
         self.castle = True
     
     def __str__(self):
-        return 'r'
+        return 'r '
 
+# white knight
 class T():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'T'
+        return 'T '
 
+
+# black knight
 class t():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 't'
+        return 't '
 
+
+# white bishop
 class B():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'B'
+        return 'B '
 
+# black bishop
 class b():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'b'
+        return 'b '
 
+
+# white queen 
 class Q():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'Q'
+        return 'Q '
 
+# black queen
 class q():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'q'
+        return 'q '
 
+# white king
 class K():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'K'
+        return 'K '
 
+# black game
 class k():
     def __init__(self):
         self.moves = []
     
     def __str__(self):
-        return 'k'
+        return 'k '
 
 '''
 # class for pawn piece

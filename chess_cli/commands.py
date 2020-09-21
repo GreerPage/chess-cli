@@ -1,6 +1,6 @@
 # file for the command line interface (cli)
 from .board import board
-from .pieces import pawn, rook, knight, bishop, queen, king
+from .pieces import p, r, t, b, q, k, P, R, T, B, Q, K
 
 b = board()
 
