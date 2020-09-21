@@ -23,8 +23,11 @@ class game:
             n = split_str(command[2])
             move_piece(self.board, c, n)
         
-        if command == 'q':
+        elif command == 'q':
             exit()
-        
+            
+        else:
+            print('invalid command')
+
         self.cli()
     

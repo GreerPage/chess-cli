@@ -13,23 +13,25 @@ class P():
         position = coords_to_index(current)
         move_to = coords_to_index(new)
         board = b.board
+        side = b.white
         # move 2 spaces on first move
-        if self.moves == [] and up(board, current, 2) == '. .'.split():
+        if self.moves == [] and up(board, current, 2) == ['. ', '. ']:
             valid_moves.append([cx, cy-2])
 
         # attack
         location = right_up(b.board, current, 1)[0]
-        if location != '. ' and location not in b.white:
+        if location != '. ' and location not in side:
             valid_moves.append([cx+1, cy-1])
 
         location = left_up(b.board, current, 1)[0]
-        if location != '. ' and location not in b.white:
+        if location != '. ' and location not in side:
             valid_moves.append([cx-1, cy-1])
 
         # one space forward
-        if up(b.board, current, 1)[0] == '.':
+        if up(b.board, current, 1)[0] == '. ':
             valid_moves.append([cx, cy-1])
             
+        print(valid_moves)
         if move_to in valid_moves:
             self.moves.append([position, move_to])
             return True
