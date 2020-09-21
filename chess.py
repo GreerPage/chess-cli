@@ -1,10 +1,9 @@
-from chess_cli import board, move_piece, right_down
-
+from chess_cli import board, move_piece, left
 b = board()
 
 def main():
     b.draw()
-    e = right_down(b.board, ['a', 8], 1)
+    e = left(b.board, ['h', 1], 7)
     print(e)
     #print(move _piece('a', 's', 'a'))
     # calls for cli to activate and that will run from there ( this is all this file needs )
