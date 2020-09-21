@@ -19,11 +19,11 @@ class P():
 
         # attack
         location = right_up(b.board, current, 1)[0]
-        if location != '.' and not location.isupper():
+        if location != '. ' and location not in b.white:
             valid_moves.append([cx+1, cy-1])
 
         location = left_up(b.board, current, 1)[0]
-        if location != '.' and not location.isupper():
+        if location != '. ' and location not in b.white:
             valid_moves.append([cx-1, cy-1])
 
         # one space forward
@@ -32,7 +32,6 @@ class P():
             
         if move_to in valid_moves:
             self.moves.append([position, move_to])
-            print(self.moves)
             return True
 
         return False

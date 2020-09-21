@@ -3,7 +3,6 @@ from .utils import coords_to_index, split_str
 
 # function to initiate a move
 def move_piece(b, current, new):
-    print(current)
     x, y = coords_to_index(current)
     piece = b.board[y][x]
     if piece.validate_move(b, current, new):
@@ -15,6 +14,7 @@ class game:
         self.white = True
     
     def cli(self):
+        print()
         command = input('Enter a command ')
 
         if command.startswith('m'):
@@ -22,6 +22,9 @@ class game:
             c = split_str(command[1])
             n = split_str(command[2])
             move_piece(self.board, c, n)
+        
+        if command == 'q':
+            exit()
         
         self.cli()
     
