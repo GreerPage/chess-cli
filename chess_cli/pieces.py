@@ -174,7 +174,7 @@ class K():
 
    
 
-# black game
+# black king
 class k():
     def __init__(self):
         self.moves = []

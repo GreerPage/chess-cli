@@ -37,6 +37,12 @@ class board:
         new_index_x, new_index_y = coords_to_index(new)
         current_location = self.board[current_index_y][current_index_x]
         new_location = self.board[new_index_y][new_index_x]
+        if new_location != '. ':
+            if new_location in self.white:
+                self.white.remove(new_location)
+            elif new_location in self.black:
+                self.black.remove(new_location)
+            new_location = '. '
         self.board[new_index_y][new_index_x] = current_location
         self.board[current_index_y][current_index_x] = new_location
         self.draw()
