@@ -31,7 +31,6 @@ class P():
         if up(b.board, current, 1)[0] == '. ':
             valid_moves.append([cx, cy-1])
             
-        print(valid_moves)
         if move_to in valid_moves:
             self.moves.append([position, move_to])
             return True
@@ -48,6 +47,36 @@ class p():
         self.moves = []
         self.passat = False
     
+    def validate_move(self, b, current, new):
+        valid_moves = []
+        cx, cy = coords_to_index(current)
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        board = b.board
+        side = b.black
+        # move 2 spaces on first move
+        if self.moves == [] and down(board, current, 2) == ['. ', '. ']:
+            valid_moves.append([cx, cy+2])
+
+        # attack
+        location = right_down(b.board, current, 1)[0]
+        if location != '. ' and location not in side:
+            valid_moves.append([cx+1, cy+1])
+
+        location = left_down(b.board, current, 1)[0]
+        if location != '. ' and location not in side:
+            valid_moves.append([cx-1, cy+1])
+
+        # one space forward
+        if down(b.board, current, 1)[0] == '. ':
+            valid_moves.append([cx, cy+1])
+            
+        if move_to in valid_moves:
+            self.moves.append([position, move_to])
+            return True
+
+        return False
+
     def __str__(self):
         return 'p '
 
