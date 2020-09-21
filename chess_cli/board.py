@@ -6,16 +6,20 @@ from .utils import coords_to_index
 #class for the game board
 class board:   
     def __init__(self):
+        # set white team
+        self.white = [P(), P(), P(), P(), P(), P(), P(), P(), R(), T(), B(), Q(), K(), B(), T(), R()]
+        # set the black team
+        self.black = [p(), p(), p(), p(), p(), p(), p(), p(), r(), t(), b(), q(), k(), b(), t(), r()]
         # set the initial board 
         self.board = [
-            ['8  ', r(), t(), b(), q(), k(), b(), t(), r()],
-            ['7  ', p(), p(), p(), p(), p(), p(), p(), p()],
+            ['8  '] + self.black[8:16],
+            ['7  '] + self.black[0:8],
             ['6  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
             ['5  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
             ['4  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
             ['3  ', '. ', '. ', '. ', '. ' , '. ', '. ', '. ', '. '],
-            ['2  ', P(), P(), P(), P(), P(), P(), P(), P()],
-            ['1  ', R(), T(), B(), Q(), K(), B(), T(), R()],
+            ['2  '] + self.white[0:8],
+            ['1  '] + self.white[8:16],
             ['', '', '', '', '', '', '', ''],
             ['   ', 'a ', 'b ', 'c ', 'd ', 'e ', 'f ', 'g ', 'h']
         ]
