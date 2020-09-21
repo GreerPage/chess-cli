@@ -10,24 +10,31 @@ class P():
     def validate_move(self, b, current, new):
         valid_moves = []
         cx, cy = coords_to_index(current)
+        position = coords_to_index(current)
         move_to = coords_to_index(new)
         board = b.board
         # move 2 spaces on first move
         if self.moves == [] and up(board, current, 2) == '. .'.split():
             valid_moves.append([cx, cy-2])
+
         # attack
         location = right_up(b.board, current, 1)[0]
         if location != '.' and not location.isupper():
             valid_moves.append([cx+1, cy-1])
+
         location = left_up(b.board, current, 1)[0]
         if location != '.' and not location.isupper():
             valid_moves.append([cx-1, cy-1])
+
         # one space forward
         if up(b.board, current, 1)[0] == '.':
             valid_moves.append([cx, cy-1])
-
+            
         if move_to in valid_moves:
+            self.moves.append([position, move_to])
+            print(self.moves)
             return True
+
         return False
     
     def __str__(self):
