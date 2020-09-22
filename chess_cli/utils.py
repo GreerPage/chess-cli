@@ -68,5 +68,52 @@ def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [board[c_y+i][c_x-i] for i in range(1, distance+1)]
 
+def valid_vertical_horizontal_moves(b, current, new, side):
+    valid_moves = []
+    cx, cy = coords_to_index(current)
+    move_to = coords_to_index(new)
+    board = b.board
+    paths = [up(board, current, cy), down(board, current, 7-cy), right(board, current, 8-cx), left(board, current, cx-1)]
+    for i in range(len(paths[0])):
+        if paths[0][i] == '. ':
+            valid_moves.append([cx, cy-i-1])
+        elif paths[0][i] in side:
+            break
+        else:
+            valid_moves.append([cx, cy-i-1])  
+            break
+    
+    for i in range(len(paths[1])):
+        if paths[1][i] == '. ':
+            valid_moves.append([cx, cy+i+1])
+        elif paths[1][i] in side:
+            break
+        else:
+            valid_moves.append([cx, cy+i+1])  
+            break
+
+    for i in range(len(paths[2])):
+        if paths[2][i] == '. ':
+            valid_moves.append([cx+i+1, cy])
+        elif paths[2][i] in side:
+            break
+        else:
+            valid_moves.append([cx+i+1, cy])  
+            break
+
+    for i in range(1, len(paths[3])+1):
+        if paths[3][i-1] == '. ':
+            valid_moves.append([cx-i, cy]) 
+        elif paths[3][i-1] in side:
+            break
+        else:
+            valid_moves.append([cx-i, cy])  
+            break
+    
+    if move_to in valid_moves:
+        return True
+
+    return False
+
 def split_str(w):
     return [l for l in w]
