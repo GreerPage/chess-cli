@@ -68,6 +68,7 @@ def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [board[c_y+i][c_x-i] for i in range(1, distance+1)]
 
+# get valid moves vertical and horizontal
 def valid_vertical_horizontal_moves(b, current, new, side):
     valid_moves = []
     cx, cy = coords_to_index(current)
@@ -114,6 +115,44 @@ def valid_vertical_horizontal_moves(b, current, new, side):
         return True
 
     return False
+
+# knight moves
+def l_up_right(board, current):
+    cx, cy = coords_to_index(current)
+    return [board[cy-2][cx+1], board[cy-1][cx+2]]
+
+def l_up_left(board, current):
+    cx, cy = coords_to_index(current)
+    return [board[cy-2][cx-1], board[cy-1][cx-2]]
+
+def l_down_right(board, current):
+    cx, cy = coords_to_index(current)
+    return [board[cy+2][cx+1], board[cy+1][cx+2]]
+
+def l_down_left(board, current):
+    cx, cy = coords_to_index(current)
+    return [board[cy+2][cx-1], board[cy+1][cx-2]]
+
+def knight_logic(board, current, side):
+    valid_moves = []
+    cx, cy = coords_to_index(current)
+    if l_up_right(board, current)[0] not in side:
+            valid_moves.append([cx+1, cy-2])
+    if l_up_right(board, current)[1] not in side:
+        valid_moves.append([cx+2, cy-1])
+    if l_up_left(board, current)[0] not in side:
+        valid_moves.append([cx-1, cy-2])
+    if l_up_left(board, current)[1] not in side:
+        valid_moves.append([cx-2, cy-1])
+    if l_down_right(board, current)[0] not in side:
+        valid_moves.append([cx+1, cy+2])
+    if l_down_right(board, current)[1] not in side:
+        valid_moves.append([cx+2, cy+1])
+    if l_down_left(board, current)[0] not in side:
+        valid_moves.append([cx-1, cy+2])
+    if l_down_left(board, current)[1] not in side:
+        valid_moves.append([cx-2, cy+1])
+    return valid_moves
 
 def split_str(w):
     return [l for l in w]

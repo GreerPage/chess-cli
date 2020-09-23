@@ -1,5 +1,5 @@
 # define pieces
-from .utils import coords_to_index, up, down, left, right, right_up, right_down, left_up, left_down, valid_vertical_horizontal_moves
+from .utils import coords_to_index, up, down, left, right, right_up, right_down, left_up, left_down, valid_vertical_horizontal_moves, l_up_right, l_up_left, l_down_left, l_down_right, knight_logic
 
 # white pawn
 class P():
@@ -127,12 +127,15 @@ class T():
         self.moves = []
     
     def validate_move(self, b, current, new):
-        valid_moves = []
-        cx, cy = coords_to_index(current)
         position = coords_to_index(current)
         move_to = coords_to_index(new)
         board = b.board
         side = b.white
+        valid_moves = knight_logic(board, current, side)
+        if move_to in valid_moves:
+            self.moves.append([position, move_to])
+            return True
+        return False
         
 
     def __str__(self):
@@ -146,6 +149,17 @@ class t():
     def __init__(self):
         self.moves = []
     
+    def validate_move(self, b, current, new):
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        board = b.board
+        side = b.black
+        valid_moves = knight_logic(board, current, side)
+        if move_to in valid_moves:
+            self.moves.append([position, move_to])
+            return True
+        return False
+
     def __str__(self):
         return 't '
 
