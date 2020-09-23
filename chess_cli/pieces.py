@@ -126,6 +126,15 @@ class T():
     def __init__(self):
         self.moves = []
     
+    def validate_move(self, b, current, new):
+        valid_moves = []
+        cx, cy = coords_to_index(current)
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        board = b.board
+        side = b.white
+        
+
     def __str__(self):
         return 'T '
     
