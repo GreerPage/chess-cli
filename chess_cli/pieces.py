@@ -40,7 +40,6 @@ class P():
     def __str__(self):
         return 'P '
     
-
 # black pawn
 class p():
     def __init__(self):
@@ -80,7 +79,6 @@ class p():
     def __str__(self):
         return 'p '
 
-
 # white rook
 class R():
     def __init__(self):
@@ -100,7 +98,6 @@ class R():
     def __str__(self):
         return 'R '
 
-
 # black rook
 class r():
     def __init__(self):
@@ -118,8 +115,6 @@ class r():
 
     def __str__(self):
         return 'r '
-
-    
 
 # white knight
 class T():
@@ -141,9 +136,6 @@ class T():
     def __str__(self):
         return 'T '
     
-   
-
-
 # black knight.
 class t():
     def __init__(self):
@@ -163,9 +155,6 @@ class t():
     def __str__(self):
         return 't '
 
-    
-
-
 # white bishop
 class B():
     def __init__(self):
@@ -184,8 +173,6 @@ class B():
     def __str__(self):
         return 'B '
     
-    
-
 # black bishop
 class b():
     def __init__(self):
@@ -203,7 +190,6 @@ class b():
 
     def __str__(self):
         return 'b '
-
 
 # white queen 
 class Q():
@@ -227,7 +213,6 @@ class Q():
     def __str__(self):
         return 'Q '
 
-
 # black queen
 class q():
     def __init__(self):
@@ -250,8 +235,6 @@ class q():
     def __str__(self):
         return 'q '
 
-   
-
 # white king
 class K():
     def __init__(self):
@@ -270,8 +253,6 @@ class K():
 
     def __str__(self):
         return 'K '
-
-   
 
 # black king
 class k():
