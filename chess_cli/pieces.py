@@ -257,6 +257,36 @@ class K():
     def __init__(self):
         self.moves = []
     
+    def validate_move(self, b, current, new):
+        valid_moves = []
+        cx, cy = coords_to_index(current)
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        board = b.board
+        side = b.white
+        u, d, r, l = up(board, current, 1)[0], down(board, current, 1)[0], right(board, current, 1)[0], left(board, current, 1)[0]
+        if u == '. ' or u not in side:
+            valid_moves.append([cx, cy-1])
+        if d == '. ' or d not in side:
+            valid_moves.append([cx, cy+1])
+        if l == '. ' or l not in side:
+            valid_moves.append([cx-1, cy])
+        if r == '. ' or r not in side:
+            valid_moves.append([cx+1, cy])
+        ru, lu, rd, ld = right_up(board, current, 1)[0], left_up(board, current, 1)[0], right_down(board, current, 1)[0], left_down(board, current, 1)[0]
+        if ru == '. ' or ru not in side:
+            valid_moves.append([cx+1, cy-1])
+        if lu == '. ' or lu not in side:
+            valid_moves.append([cx-1, cy-1])
+        if rd == '. ' or rd not in side:
+            valid_moves.append([cx+1, cy+1])
+        if ld == '. ' or ld not in side:
+            valid_moves.append([cx-1, cy+1])
+        if move_to in valid_moves:
+            self.moves.append([position, move_to])
+            return True
+        return False
+
     def __str__(self):
         return 'K '
 

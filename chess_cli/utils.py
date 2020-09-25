@@ -139,7 +139,6 @@ def valid_diagonal_moves(b, current, new, side):
         else:
             valid_moves.append([cx+1+i, cy-1-i])
     for i in range(len(lu)):
-        print(i)
         if lu[i] == '. ':
             valid_moves.append([cx-1-i, cy-1-i])
         elif lu[i] in side:
