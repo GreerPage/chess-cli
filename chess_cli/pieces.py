@@ -204,14 +204,26 @@ class b():
     def __str__(self):
         return 'b '
 
-    
-
 
 # white queen 
 class Q():
     def __init__(self):
         self.moves = []
     
+    def validate_move(self, b, current, new):
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        side = b.white
+        valid = valid_diagonal_moves(b, current, new, side)
+        if valid:
+            self.moves.append([position, move_to])
+            return True
+        valid1 = valid_vertical_horizontal_moves(b, current, new, side)
+        if valid1:
+            self.moves.append([position, move_to])
+            return True
+        return False
+
     def __str__(self):
         return 'Q '
 
