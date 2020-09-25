@@ -203,5 +203,28 @@ def knight_logic(board, current, side):
         valid_moves.append([cx-2, cy+1])
     return valid_moves
 
+def king_logic(board, current, side):
+    valid_moves = []
+    cx, cy = coords_to_index(current)
+    u, d, r, l = up(board, current, 1)[0], down(board, current, 1)[0], right(board, current, 1)[0], left(board, current, 1)[0]
+    if u == '. ' or u not in side:
+        valid_moves.append([cx, cy-1])
+    if d == '. ' or d not in side:
+        valid_moves.append([cx, cy+1])
+    if l == '. ' or l not in side:
+        valid_moves.append([cx-1, cy])
+    if r == '. ' or r not in side:
+        valid_moves.append([cx+1, cy])
+    ru, lu, rd, ld = right_up(board, current, 1)[0], left_up(board, current, 1)[0], right_down(board, current, 1)[0], left_down(board, current, 1)[0]
+    if ru == '. ' or ru not in side:
+        valid_moves.append([cx+1, cy-1])
+    if lu == '. ' or lu not in side:
+        valid_moves.append([cx-1, cy-1])
+    if rd == '. ' or rd not in side:
+        valid_moves.append([cx+1, cy+1])
+    if ld == '. ' or ld not in side:
+        valid_moves.append([cx-1, cy+1])
+    return valid_moves
+
 def split_str(w):
     return [l for l in w]
