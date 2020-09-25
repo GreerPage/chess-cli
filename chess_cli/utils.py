@@ -228,3 +228,7 @@ def king_logic(board, current, side):
 
 def split_str(w):
     return [l for l in w]
+
+def get_location(b, c):
+    cx , cy = coords_to_index(c)
+    return b[cy][cx]

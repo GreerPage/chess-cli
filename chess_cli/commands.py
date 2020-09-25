@@ -1,5 +1,5 @@
 # file for the command line interface (cli)
-from .utils import coords_to_index, split_str
+from .utils import coords_to_index, split_str, get_location
 
 # function to initiate a move
 def move_piece(b, current, new):
@@ -7,6 +7,8 @@ def move_piece(b, current, new):
     piece = b.board[y][x]
     if piece.validate_move(b, current, new):
         b.update_board(current, new)
+        return True
+    return False
 
 class game:
     def __init__(self, board):
@@ -15,13 +17,28 @@ class game:
     
     def cli(self):
         print()
-        command = input('Enter a command ')
+        prompt = "White's move -> " if self.white else "Black's move -> "
+        command = input(prompt)
 
         if command.startswith('m'):
             command = command.split()
             c = split_str(command[1])
             n = split_str(command[2])
-            move_piece(self.board, c, n)
+            piece = get_location(self.board.board, c)
+            if self.white:
+                if piece not in self.board.white:
+                    print('You can only move a white piece')
+                    self.cli()
+                move = move_piece(self.board, c, n)
+                if move:
+                    self.white = False
+            else:
+                if piece not in self.board.black:
+                    print('You can only move a black piece')
+                    self.cli()
+                move = move_piece(self.board, c, n)
+                if move:
+                    self.white = True
         
         elif command == 'q':
             exit()
