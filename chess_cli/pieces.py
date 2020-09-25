@@ -8,11 +8,9 @@ class P():
         self.passat = False
         self.position = pos
 
-    def validate_move(self, b, current, new):
+    def get_valid_moves(self, b, current):
         valid_moves = []
         cx, cy = coords_to_index(current)
-        position = coords_to_index(current)
-        move_to = coords_to_index(new)
         board = b.board
         side = b.white
         # move 2 spaces on first move
@@ -31,11 +29,17 @@ class P():
         # one space forward
         if up(b.board, current, 1)[0] == '. ':
             valid_moves.append([cx, cy-1])
-            
+        
+        return valid_moves
+
+    def validate_move(self, b, current, new):
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        valid_moves = self.get_valid_moves(b, current)    
         if move_to in valid_moves:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
-
         return False
     
     def __str__(self):
@@ -48,11 +52,9 @@ class p():
         self.passat = False
         self.position = pos
     
-    def validate_move(self, b, current, new):
+    def get_valid_moves(self, b, current):
         valid_moves = []
         cx, cy = coords_to_index(current)
-        position = coords_to_index(current)
-        move_to = coords_to_index(new)
         board = b.board
         side = b.black
         # move 2 spaces on first move
@@ -71,11 +73,17 @@ class p():
         # one space forward
         if down(b.board, current, 1)[0] == '. ':
             valid_moves.append([cx, cy+1])
-            
+        
+        return valid_moves
+
+    def validate_move(self, b, current, new):
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        valid_moves = self.get_valid_moves(b, current)    
         if move_to in valid_moves:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
-
         return False
 
     def __str__(self):
@@ -87,11 +95,15 @@ class R():
         self.moves = []
         self.castle = True
         self.position = pos
-    
+
+    def get_valid_moves(self, b, current):
+        return valid_vertical_horizontal_moves(b, current, b.white)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        if valid_vertical_horizontal_moves(b, current, new, b.white):
+        if self.get_valid_moves(b, current):
+            self.position = move_to
             self.moves.append([position, move_to])
             self.castle = False
             return True
@@ -108,10 +120,14 @@ class r():
         self.castle = True
         self.position = pos
     
+    def get_valid_moves(self, b, current):
+        return valid_vertical_horizontal_moves(b, current, b.black)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        if valid_vertical_horizontal_moves(b, current, new, b.black):
+        if self.get_valid_moves(b, current):
+            self.position = move_to
             self.moves.append([position, move_to])
             self.castle = False
             return True
@@ -126,13 +142,15 @@ class T():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):
+        return knight_logic(b, current, b.white)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        board = b.board
-        side = b.white
-        valid_moves = knight_logic(board, current, side)
+        valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -147,13 +165,15 @@ class t():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):
+        return knight_logic(b, current, b.black)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        board = b.board
-        side = b.black
-        valid_moves = knight_logic(board, current, side)
+        valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -167,12 +187,15 @@ class B():
         self.moves = []
         self.position = pos
 
+    def get_valid_moves(self, b, current):
+        return valid_diagonal_moves(b, current, b.white)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        side = b.white
-        valid = valid_diagonal_moves(b, current, new, side)
+        valid = self.get_valid_moves(b, current)
         if valid:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -186,12 +209,15 @@ class b():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):
+        return valid_diagonal_moves(b, current, b.black)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        side = b.black
-        valid = valid_diagonal_moves(b, current, new, side)
+        valid = self.get_valid_moves(b, current)
         if valid:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -205,16 +231,16 @@ class Q():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):    
+        valid_moves = valid_diagonal_moves(b, current, b.white)
+        valid_moves += valid_vertical_horizontal_moves(b, current, b.white)
+        return valid_moves
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        side = b.white
-        valid = valid_diagonal_moves(b, current, new, side)
-        if valid:
-            self.moves.append([position, move_to])
-            return True
-        valid1 = valid_vertical_horizontal_moves(b, current, new, side)
-        if valid1:
+        if move_to in self.get_valid_moves(b, current):
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -228,16 +254,16 @@ class q():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):    
+        valid_moves = valid_diagonal_moves(b, current, b.black)
+        valid_moves += valid_vertical_horizontal_moves(b, current, b.black)
+        return valid_moves
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        side = b.black
-        valid = valid_diagonal_moves(b, current, new, side)
-        if valid:
-            self.moves.append([position, move_to])
-            return True
-        valid1 = valid_vertical_horizontal_moves(b, current, new, side)
-        if valid1:
+        if move_to in self.get_valid_moves(b, current):
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -251,13 +277,15 @@ class K():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):
+        return king_logic(b, current, b.white)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        board = b.board
-        side = b.white
-        valid_moves = king_logic(board, current, side)
+        valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
@@ -271,13 +299,15 @@ class k():
         self.moves = []
         self.position = pos
     
+    def get_valid_moves(self, b, current):
+        return king_logic(b, current, b.black)
+
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        board = b.board
-        side = b.black
-        valid_moves = king_logic(board, current, side)
+        valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:
+            self.position = move_to
             self.moves.append([position, move_to])
             return True
         return False
