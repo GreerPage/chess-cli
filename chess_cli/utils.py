@@ -69,10 +69,9 @@ def left_down(board, current, distance):
     return [board[c_y+i][c_x-i] for i in range(1, distance+1)]
 
 # get valid moves vertical and horizontal (for rooks and queens)
-def valid_vertical_horizontal_moves(b, current, new, side):
+def valid_vertical_horizontal_moves(b, current, side):
     valid_moves = []
     cx, cy = coords_to_index(current)
-    move_to = coords_to_index(new)
     board = b.board
     paths = [up(board, current, cy), down(board, current, 7-cy), right(board, current, 8-cx), left(board, current, cx-1)]
     for i in range(len(paths[0])):
@@ -111,15 +110,11 @@ def valid_vertical_horizontal_moves(b, current, new, side):
             valid_moves.append([cx-i, cy])  
             break
     
-    if move_to in valid_moves:
-        return True
+    return valid_moves
 
-    return False
-
-def valid_diagonal_moves(b, current, new, side):
+def valid_diagonal_moves(b, current, side):
     valid_moves = []
     cx, cy = coords_to_index(current)
-    move_to = coords_to_index(new)
     board = b.board
     dr, dl, down = 8-cx, cx-1, 7-cy
     drd, dld = dr, dl
@@ -159,9 +154,7 @@ def valid_diagonal_moves(b, current, new, side):
             break
         else:
             valid_moves.append([cx+1+i, cy+1+i])
-    if move_to in valid_moves:
-        return True
-    return False
+    return valid_moves
 
 # knight moves
 # these functions return the pieces in each possible knight move
@@ -184,22 +177,23 @@ def l_down_left(board, current):
 # get valid knight moves
 def knight_logic(board, current, side):
     valid_moves = []
+    b = board.board
     cx, cy = coords_to_index(current)
-    if l_up_right(board, current)[0] not in side:
-            valid_moves.append([cx+1, cy-2])
-    if l_up_right(board, current)[1] not in side:
+    if l_up_right(b, current)[0] not in side:
+        valid_moves.append([cx+1, cy-2])
+    if l_up_right(b, current)[1] not in side:
         valid_moves.append([cx+2, cy-1])
-    if l_up_left(board, current)[0] not in side:
+    if l_up_left(b, current)[0] not in side:
         valid_moves.append([cx-1, cy-2])
-    if l_up_left(board, current)[1] not in side:
+    if l_up_left(b, current)[1] not in side:
         valid_moves.append([cx-2, cy-1])
-    if l_down_right(board, current)[0] not in side:
+    if l_down_right(b, current)[0] not in side:
         valid_moves.append([cx+1, cy+2])
-    if l_down_right(board, current)[1] not in side:
+    if l_down_right(b, current)[1] not in side:
         valid_moves.append([cx+2, cy+1])
-    if l_down_left(board, current)[0] not in side:
+    if l_down_left(b, current)[0] not in side:
         valid_moves.append([cx-1, cy+2])
-    if l_down_left(board, current)[1] not in side:
+    if l_down_left(b, current)[1] not in side:
         valid_moves.append([cx-2, cy+1])
     return valid_moves
 
@@ -232,3 +226,12 @@ def split_str(w):
 def get_location(b, c):
     cx , cy = coords_to_index(c)
     return b[cy][cx]
+
+def check_detection(board, side):
+    locations = []
+    for y in range(len(board)):
+        for x in range (len(board[y])):
+            p = board[y][x]
+            if p in side:
+                locations.append(p.position)
+    return locations
