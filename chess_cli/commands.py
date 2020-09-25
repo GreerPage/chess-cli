@@ -1,5 +1,5 @@
 # file for the command line interface (cli)
-from .utils import coords_to_index, split_str, get_location
+from .utils import coords_to_index, split_str, get_location, check_detection
 
 # function to initiate a move
 def move_piece(b, current, new):
@@ -40,6 +40,9 @@ class game:
                 if move:
                     self.white = True
         
+        elif command == 'check':
+            print(check_detection(self.board, self.board.white))
+
         elif command == 'q':
             exit()
             

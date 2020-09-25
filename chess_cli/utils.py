@@ -160,7 +160,7 @@ def valid_diagonal_moves(b, current, side):
 # these functions return the pieces in each possible knight move
 def l_up_right(board, current):
     cx, cy = coords_to_index(current)
-    return [board[cy-2][cx+1], board[cy-1][cx+2]]
+    return [board[cy-2][cx-len(board[cy-2])+1], board[cy-1], [cx-len(board[cy-1])+2]]
 
 def l_up_left(board, current):
     cx, cy = coords_to_index(current)
@@ -168,7 +168,7 @@ def l_up_left(board, current):
 
 def l_down_right(board, current):
     cx, cy = coords_to_index(current)
-    return [board[cy+2][cx+1], board[cy+1][cx+2]]
+    return [board[cy+2][cx-len(board[cy+2])+1], board[cy+1], [cx-len(board[cy+1])+2]]
 
 def l_down_left(board, current):
     cx, cy = coords_to_index(current)
@@ -197,9 +197,10 @@ def knight_logic(board, current, side):
         valid_moves.append([cx-2, cy+1])
     return valid_moves
 
-def king_logic(board, current, side):
+def king_logic(b, current, side):
     valid_moves = []
     cx, cy = coords_to_index(current)
+    board = b.board
     u, d, r, l = up(board, current, 1)[0], down(board, current, 1)[0], right(board, current, 1)[0], left(board, current, 1)[0]
     if u == '. ' or u not in side:
         valid_moves.append([cx, cy-1])
@@ -227,11 +228,12 @@ def get_location(b, c):
     cx , cy = coords_to_index(c)
     return b[cy][cx]
 
-def check_detection(board, side):
-    locations = []
+def check_detection(b, side):
+    moves = []
+    board = b.board
     for y in range(len(board)):
         for x in range (len(board[y])):
             p = board[y][x]
             if p in side:
-                locations.append(p.position)
-    return locations
+                moves += p.get_valid_moves(b, p.position)
+    return moves
