@@ -7,9 +7,11 @@ from .utils import coords_to_index
 class board:   
     def __init__(self):
         # set white team
-        self.white = [P(), P(), P(), P(), P(), P(), P(), P(), R(), T(), B(), Q(), K(), B(), T(), R()]
+        self.white = [P(['a', 2]), P(['b', 2]), P(['c', 2]), P(['d', 2]), P(['e', 2]), P(['f', 2]), P(['g', 2]), P(['g', 2]), 
+        R(['a', 1]), T(['b', 1]), B(['c', 1]), Q(['d', 1]), K(['e', 1]), B(['f', 1]), T(['g', 1]), R(['h', 1])]
         # set the black team
-        self.black = [p(), p(), p(), p(), p(), p(), p(), p(), r(), t(), b(), q(), k(), b(), t(), r()]
+        self.black = [p(['a', 7]), p(['b', 7]), p(['c', 7]), p(['d', 7]), p(['e', 7]), p(['f', 7]), p(['g', 7]), p(['h', 7]), 
+        r(['a', 8]), t(['b', 8]), b(['c', 8]), q(['d', 8]), k(['e', 8]), b(['f', 8]), t(['g', 8]), r(['h', 8])]
         # set the initial board 
         self.board = [
             ['8  '] + self.black[8:16],

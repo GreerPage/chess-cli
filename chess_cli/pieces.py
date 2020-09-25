@@ -3,9 +3,10 @@ from .utils import coords_to_index, up, down, left, right, right_up, right_down,
 
 # white pawn
 class P():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
         self.passat = False
+        self.position = pos
 
     def validate_move(self, b, current, new):
         valid_moves = []
@@ -42,9 +43,10 @@ class P():
     
 # black pawn
 class p():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
         self.passat = False
+        self.position = pos
     
     def validate_move(self, b, current, new):
         valid_moves = []
@@ -81,9 +83,10 @@ class p():
 
 # white rook
 class R():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
         self.castle = True
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -100,9 +103,10 @@ class R():
 
 # black rook
 class r():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
         self.castle = True
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -118,8 +122,9 @@ class r():
 
 # white knight
 class T():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -138,8 +143,9 @@ class T():
     
 # black knight.
 class t():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -157,8 +163,9 @@ class t():
 
 # white bishop
 class B():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
 
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -175,8 +182,9 @@ class B():
     
 # black bishop
 class b():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -193,8 +201,9 @@ class b():
 
 # white queen 
 class Q():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -215,8 +224,9 @@ class Q():
 
 # black queen
 class q():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -237,8 +247,9 @@ class q():
 
 # white king
 class K():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
@@ -256,8 +267,9 @@ class K():
 
 # black king
 class k():
-    def __init__(self):
+    def __init__(self, pos):
         self.moves = []
+        self.position = pos
     
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
