@@ -30,7 +30,9 @@ class P():
         # one space forward
         if up(b.board, current, 1)[0] == '. ':
             valid_moves.append([cx, cy-1])
-        
+
+        if b.white[12].check:
+            return []
         return valid_moves
 
     def validate_move(self, b, current, new):
@@ -277,6 +279,7 @@ class K():
     def __init__(self, pos):
         self.moves = []
         self.position = pos
+        self.check = False
     
     def get_valid_moves(self, b, current):
         return king_logic(b, current, b.white)
@@ -286,7 +289,6 @@ class K():
         move_to = coords_to_index(new)
         valid_moves = self.get_valid_moves(b, current)
         if move_to in check_detection(b, b.black):
-            print("Don't put yourself in check!")
             return False
         if move_to in valid_moves:
             self.position = new
@@ -302,6 +304,7 @@ class k():
     def __init__(self, pos):
         self.moves = []
         self.position = pos
+        self.check = False
     
     def get_valid_moves(self, b, current):
         return king_logic(b, current, b.black)
@@ -310,7 +313,6 @@ class k():
         position = coords_to_index(current)
         move_to = coords_to_index(new)
         if move_to in check_detection(b, b.white):
-            print("Don't put yourself in check!")
             return False
         valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:

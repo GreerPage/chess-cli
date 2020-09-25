@@ -17,7 +17,7 @@ class game:
     
     def cli(self):
         print()
-        prompt = "White's move -> " if self.white else "Black's move -> "
+        prompt = "White's move " if self.white else "Black's move "
         command = input(prompt)
 
         if command.startswith('m'):
