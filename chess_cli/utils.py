@@ -68,7 +68,7 @@ def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [board[c_y+i][c_x-i] for i in range(1, distance+1)]
 
-# get valid moves vertical and horizontal
+# get valid moves vertical and horizontal (for rooks and queens)
 def valid_vertical_horizontal_moves(b, current, new, side):
     valid_moves = []
     cx, cy = coords_to_index(current)
@@ -116,7 +116,56 @@ def valid_vertical_horizontal_moves(b, current, new, side):
 
     return False
 
+def valid_diagonal_moves(b, current, new, side):
+    valid_moves = []
+    cx, cy = coords_to_index(current)
+    move_to = coords_to_index(new)
+    board = b.board
+    dr, dl, down = 8-cx, cx-1, 7-cy
+    drd, dld = dr, dl
+    if cy < dr: dr = cy
+    if cy < dl: dl = cy
+    if down < drd: drd = down
+    if down < dld: dld = down
+    ru = right_up(board, current, dr)
+    lu = left_up(board, current, dl)
+    rd = right_down(board, current, drd)
+    ld = left_down(board, current, dld)
+    for i in range(len(ru)):
+        if ru[i] == '. ':
+            valid_moves.append([cx+1+i, cy-1-i])
+        elif ru[i] in side:
+            break
+        else:
+            valid_moves.append([cx+1+i, cy-1-i])
+    for i in range(len(lu)):
+        print(i)
+        if lu[i] == '. ':
+            valid_moves.append([cx-1-i, cy-1-i])
+        elif lu[i] in side:
+            break
+        else:
+            valid_moves.append([cx-1-i, cy-1-i])
+    for i in range(len(ld)):
+        if ld[i] == '. ':
+            valid_moves.append([cx-1-i, cy+1+i])
+        elif ld[i] in side:
+            break
+        else:
+            valid_moves.append([cx-1-i, cy+1+i])
+    for i in range(len(rd)):
+        if rd[i] == '. ':
+            valid_moves.append([cx+1+i, cy+1+i])
+        elif rd[i] in side:
+            break
+        else:
+            valid_moves.append([cx+1+i, cy+1+i])
+    if move_to in valid_moves:
+        return True
+    return False
+
 # knight moves
+# these functions return the pieces in each possible knight move
 def l_up_right(board, current):
     cx, cy = coords_to_index(current)
     return [board[cy-2][cx+1], board[cy-1][cx+2]]
@@ -133,6 +182,7 @@ def l_down_left(board, current):
     cx, cy = coords_to_index(current)
     return [board[cy+2][cx-1], board[cy+1][cx-2]]
 
+# get valid knight moves
 def knight_logic(board, current, side):
     valid_moves = []
     cx, cy = coords_to_index(current)
