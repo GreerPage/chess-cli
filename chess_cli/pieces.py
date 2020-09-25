@@ -1,5 +1,5 @@
 # define pieces
-from .utils import coords_to_index, up, down, left, right, right_up, right_down, left_up, left_down, valid_vertical_horizontal_moves, l_up_right, l_up_left, l_down_left, l_down_right, knight_logic
+from .utils import coords_to_index, up, down, left, right, right_up, right_down, left_up, left_down, valid_vertical_horizontal_moves, l_up_right, l_up_left, l_down_left, l_down_right, knight_logic, valid_diagonal_moves
 
 # white pawn
 class P():
@@ -170,7 +170,17 @@ class t():
 class B():
     def __init__(self):
         self.moves = []
-    
+
+    def validate_move(self, b, current, new):
+        position = coords_to_index(current)
+        move_to = coords_to_index(new)
+        side = b.white
+        valid = valid_diagonal_moves(b, current, new, side)
+        if valid:
+            self.moves.append([position, move_to])
+            return True
+        return False
+
     def __str__(self):
         return 'B '
     
