@@ -1,4 +1,5 @@
 # file containing functions used throughout the project
+from .test_board import test_board
 
 # take board x value and turn return a equivalent value for the matrix
 def x_axis_to_index(x):
@@ -67,6 +68,27 @@ def left_up(board, current, distance):
 def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [board[c_y+i][c_x-i] for i in range(1, distance+1)]
+
+def get_path_between_points(b, c, n):
+    board = b.board
+    cx ,cy = c
+    nx, ny = n
+    if cx < nx and cy==ny: 
+        return [board[cy][cx+i+1] for i in range(nx-cx)]
+    if cx > nx and cy == ny:
+        return [board[cy][cx-i] for i in range(1, cx-nx+1)]
+    if cx == nx and cy > ny:
+        return [board[cy-i-1][cx] for i in range(cy-ny)]
+    if cx == nx and cy < ny:
+        return [board[cy+i+1][cx] for i in range(ny-cy)]
+    if cx < nx and cy > ny: 
+        return [board[cy-i-1][cx+i+1] for i in range(nx-cx)]
+    if cx < nx and cy < ny: 
+        return [board[cy+i+1][cx+i+1] for i in range(nx-cx)]
+    if cx > nx and cy > ny:
+        return [board[cy-i][cx-i] for i in range(1, cx-nx+1)]
+    if cx > nx and cy < ny:
+        return [board[cy+i][cx-i] for i in range(1, cx-nx+1)]
 
 # get valid moves vertical and horizontal (for rooks and queens)
 def valid_vertical_horizontal_moves(b, current, side):
@@ -227,6 +249,7 @@ def split_str(w):
 def get_location(b, c, pre_parsed=False):
     if pre_parsed:
         if c[0] > 8 or c[1] > 7: return False
+        if c[0] < 0 or c[1] < 0: return False
         return b[c[1]][c[0]] 
     cx , cy = coords_to_index(c)
     return b[cy][cx]
@@ -234,16 +257,41 @@ def get_location(b, c, pre_parsed=False):
 def check_detection(b, side):
     m = []
     board = b.board
-    k = 'k ' if side == b.white else 'K '
+    k = 'k ' if side == b.black else 'K '
+    side  = b.white if side == b.black else b.black
     for y in range(len(board)):
         for x in range (len(board[y])):
             p = board[y][x]
             if p in side:
                 moves = p.get_valid_moves(b, p.position)
-                pr = {'p': p, 'pos': p.position, 'moves': []}
+                pr = {'p': p, 'pos': coords_to_index(p.position), 'moves': []}
                 for move in moves:
                     if str(get_location(b.board, move, pre_parsed=True)) == k: 
                         pr['moves'].append(move)
                 if pr['moves'] != []:
                     m.append(pr)
     return m
+
+def get_sides_valid_moves(b, side):
+    moves = []
+    board = b.board
+    for y in range(len(board)):
+        for x in range (len(board[y])):
+            p = board[y][x]
+            if p in side:
+                moves.append(p.get_valid_moves(b, p.position))
+    return moves
+
+def check_mate_detection(b, side, opps):
+    print(opps)
+    moves = []
+    u = b.board
+    tb = test_board(u)
+    s = 'white' if side == b.white else 'black'
+    valids = get_sides_valid_moves(b, side)
+    for v in valids:
+        for i in v:
+            #tb.test(s, i)
+            if opps['pos'] == i:
+                moves.append(i) 
+    return moves
