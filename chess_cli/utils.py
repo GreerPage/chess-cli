@@ -224,16 +224,26 @@ def king_logic(b, current, side):
 def split_str(w):
     return [l for l in w]
 
-def get_location(b, c):
+def get_location(b, c, pre_parsed=False):
+    if pre_parsed:
+        if c[0] > 8 or c[1] > 7: return False
+        return b[c[1]][c[0]] 
     cx , cy = coords_to_index(c)
     return b[cy][cx]
 
 def check_detection(b, side):
-    moves = []
+    m = []
     board = b.board
+    k = 'k ' if side == b.white else 'K '
     for y in range(len(board)):
         for x in range (len(board[y])):
             p = board[y][x]
             if p in side:
-                moves += p.get_valid_moves(b, p.position)
-    return moves
+                moves = p.get_valid_moves(b, p.position)
+                pr = {'p': p, 'pos': p.position, 'moves': []}
+                for move in moves:
+                    if str(get_location(b.board, move, pre_parsed=True)) == k: 
+                        pr['moves'].append(move)
+                if pr['moves'] != []:
+                    m.append(pr)
+    return m

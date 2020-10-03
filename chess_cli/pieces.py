@@ -31,8 +31,6 @@ class P():
         if up(b.board, current, 1)[0] == '. ':
             valid_moves.append([cx, cy-1])
 
-        if b.white[12].check:
-            return []
         return valid_moves
 
     def validate_move(self, b, current, new):

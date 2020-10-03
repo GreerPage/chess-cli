@@ -1,5 +1,6 @@
 # file for the command line interface (cli)
 from .utils import coords_to_index, split_str, get_location, check_detection
+import readline
 
 # function to initiate a move
 def move_piece(b, current, new):
