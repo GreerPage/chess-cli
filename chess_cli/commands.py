@@ -1,5 +1,5 @@
 # file for the command line interface (cli)
-from .utils import coords_to_index, split_str, get_location, check_detection
+from .utils import coords_to_index, split_str, get_location, get_path_between_points
 import readline
 
 # function to initiate a move
@@ -41,8 +41,8 @@ class game:
                 if move:
                     self.white = True
         
-        elif command == 'check':
-            print(check_detection(self.board, self.board.white))
+        elif command == 'path':
+            print(get_path_between_points([5, 0], [1, 4]))
 
         elif command == 'q':
             exit()

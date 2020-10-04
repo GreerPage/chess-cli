@@ -1,5 +1,5 @@
 # define pieces
-from .utils import coords_to_index, up, down, left, right, right_up, right_down, left_up, left_down, valid_vertical_horizontal_moves, l_up_right, l_up_left, l_down_left, l_down_right, knight_logic, valid_diagonal_moves, king_logic, check_detection
+from .utils import coords_to_index, up, down, left, right, right_up, right_down, left_up, left_down, valid_vertical_horizontal_moves, l_up_right, l_up_left, l_down_left, l_down_right, knight_logic, valid_diagonal_moves, king_logic, check_detection, check_mate_detection
 
 # white pawn
 class P():
@@ -310,8 +310,9 @@ class k():
     def validate_move(self, b, current, new):
         position = coords_to_index(current)
         move_to = coords_to_index(new)
-        if move_to in check_detection(b, b.white):
-            return False
+        #if move_to in check_detection(b, b.white):
+            #return False
+        print(check_mate_detection(b, b.black, check_detection(b, b.black)[0], self.position))
         valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:
             self.position = new

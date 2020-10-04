@@ -69,26 +69,25 @@ def left_down(board, current, distance):
     c_x, c_y = coords_to_index(current)
     return [board[c_y+i][c_x-i] for i in range(1, distance+1)]
 
-def get_path_between_points(b, c, n):
-    board = b.board
-    cx ,cy = c
+def get_path_between_points(c, n):
+    cx, cy = c
     nx, ny = n
     if cx < nx and cy==ny: 
-        return [board[cy][cx+i+1] for i in range(nx-cx)]
+        return [[cx+i+1, cy] for i in range(nx-cx)]
     if cx > nx and cy == ny:
-        return [board[cy][cx-i] for i in range(1, cx-nx+1)]
+        return [[cx-i, cy] for i in range(1, cx-nx+1)]
     if cx == nx and cy > ny:
-        return [board[cy-i-1][cx] for i in range(cy-ny)]
+        return [[cx, cy-i-1] for i in range(cy-ny)]
     if cx == nx and cy < ny:
-        return [board[cy+i+1][cx] for i in range(ny-cy)]
+        return [[cx, cy+i+1] for i in range(ny-cy)]
     if cx < nx and cy > ny: 
-        return [board[cy-i-1][cx+i+1] for i in range(nx-cx)]
+        return [[cx+i, cy-i] for i in range(1, nx-cx+1)]
     if cx < nx and cy < ny: 
-        return [board[cy+i+1][cx+i+1] for i in range(nx-cx)]
+        return [[cx+i+1, cy+i+1] for i in range(nx-cx)]
     if cx > nx and cy > ny:
-        return [board[cy-i][cx-i] for i in range(1, cx-nx+1)]
+        return [[cx-i, cy-i] for i in range(1, cx-nx+1)]
     if cx > nx and cy < ny:
-        return [board[cy+i][cx-i] for i in range(1, cx-nx+1)]
+        return [[cx-i, cy+i] for i in range(1, cx-nx+1)]
 
 # get valid moves vertical and horizontal (for rooks and queens)
 def valid_vertical_horizontal_moves(b, current, side):
@@ -282,7 +281,9 @@ def get_sides_valid_moves(b, side):
                 moves.append(p.get_valid_moves(b, p.position))
     return moves
 
-def check_mate_detection(b, side, opps):
+def check_mate_detection(b, side, opps, kpos):
+    path = get_path_between_points(opps['pos'], opps['moves'][0]).append(opps['pos']).append(opps['moves'][0])
+    print(path)
     print(opps)
     moves = []
     u = b.board
