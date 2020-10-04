@@ -312,7 +312,7 @@ class k():
         move_to = coords_to_index(new)
         #if move_to in check_detection(b, b.white):
             #return False
-        print(check_mate_detection(b, b.black, check_detection(b, b.black), self.position))
+        print(check_mate_detection(b, b.black, check_detection(b, b.black)))
         valid_moves = self.get_valid_moves(b, current)
         if move_to in valid_moves:
             self.position = new
