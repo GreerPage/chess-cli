@@ -42,7 +42,7 @@ class game:
                     self.white = True
         
         elif command == 'path':
-            print(get_path_between_points([5, 0], [1, 4]))
+            print(get_path_between_points([8, 0], [1, 7]))
 
         elif command == 'q':
             exit()

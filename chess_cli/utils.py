@@ -73,21 +73,21 @@ def get_path_between_points(c, n):
     cx, cy = c
     nx, ny = n
     if cx < nx and cy==ny: 
-        return [[cx+i+1, cy] for i in range(nx-cx)]
+        return [[cx+i, cy] for i in range(nx-cx+1)]
     if cx > nx and cy == ny:
-        return [[cx-i, cy] for i in range(1, cx-nx+1)]
+        return [[cx-i, cy] for i in range(cx-nx+1)]
     if cx == nx and cy > ny:
-        return [[cx, cy-i-1] for i in range(cy-ny)]
+        return [[cx, cy-i] for i in range(cy-ny+1)]
     if cx == nx and cy < ny:
-        return [[cx, cy+i+1] for i in range(ny-cy)]
+        return [[cx, cy+i] for i in range(ny-cy+1)]
     if cx < nx and cy > ny: 
-        return [[cx+i, cy-i] for i in range(1, nx-cx+1)]
+        return [[cx+i, cy-i] for i in range(nx-cx+1)]
     if cx < nx and cy < ny: 
-        return [[cx+i+1, cy+i+1] for i in range(nx-cx)]
+        return [[cx+i, cy+i] for i in range(nx-cx+1)]
     if cx > nx and cy > ny:
-        return [[cx-i, cy-i] for i in range(1, cx-nx+1)]
+        return [[cx-i, cy-i] for i in range(cx-nx+1)]
     if cx > nx and cy < ny:
-        return [[cx-i, cy+i] for i in range(1, cx-nx+1)]
+        return [[cx-i, cy+i] for i in range(cx-nx+1)]
 
 # get valid moves vertical and horizontal (for rooks and queens)
 def valid_vertical_horizontal_moves(b, current, side):
@@ -282,7 +282,7 @@ def get_sides_valid_moves(b, side):
     return moves
 
 def check_mate_detection(b, side, opps, kpos):
-    path = get_path_between_points(opps['pos'], opps['moves'][0]).append(opps['pos']).append(opps['moves'][0])
+    path = get_path_between_points(opps['pos'], opps['moves'][0])#.append(opps['pos'])
     print(path)
     print(opps)
     moves = []
