@@ -1,5 +1,4 @@
 # file containing functions used throughout the project
-from .test_board import test_board
 
 # take board x value and turn return a equivalent value for the matrix
 def x_axis_to_index(x):
@@ -281,18 +280,11 @@ def get_sides_valid_moves(b, side):
                 moves.append(p.get_valid_moves(b, p.position))
     return moves
 
-def check_mate_detection(b, side, opps, kpos):
-    path = get_path_between_points(opps['pos'], opps['moves'][0])#.append(opps['pos'])
-    print(path)
-    print(opps)
+def check_mate_detection(b, side, opps):
     moves = []
-    u = b.board
-    tb = test_board(u)
-    s = 'white' if side == b.white else 'black'
-    valids = get_sides_valid_moves(b, side)
-    for v in valids:
-        for i in v:
-            #tb.test(s, i)
-            if opps['pos'] == i:
-                moves.append(i) 
+    for p in opps:
+        path = get_path_between_points(p['pos'], p['moves'][0])
+        [moves.append(l) for l in path]
+    # TODO get dictof piece and moves and if pieces moves are in path then they cna move there
+    # not sure how to implement maybe special thing in game class idk its late
     return moves
