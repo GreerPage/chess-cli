@@ -140,7 +140,7 @@ class r():
         return 'r '
 
 # white knight
-class T():
+class N():
     def __init__(self, pos):
         self.moves = []
         self.position = pos
@@ -160,10 +160,10 @@ class T():
         
 
     def __str__(self):
-        return 'T '
+        return 'N '
         
     
-class t():
+class n():
     def __init__(self, pos):
         self.moves = []
         self.position = pos
@@ -181,7 +181,7 @@ class t():
         return False
 
     def __str__(self):
-        return 't '
+        return 'n '
 
 # white bishop
 class B():
