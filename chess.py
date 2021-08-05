@@ -11,7 +11,8 @@ def main():
     b = board(color=color)
     b.draw()
     g = game(b)
-    g.cli()
+    while True:
+        g.cli()
 
 if __name__ == '__main__':
     main()
