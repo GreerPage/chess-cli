@@ -20,39 +20,55 @@ class game:
         print()
         prompt = "White's move: " if self.white else "Black's move: "
         try:
-            command = input(prompt)
-        except KeyboardInterrupt:
+            command = input(prompt).split()
+        except (KeyboardInterrupt, EOFError):
             exit()
         print()
 
-        if command.startswith('m'):
-            command = command.split()
+        if len(command) == 0:
+            self.board.draw()
+            return
+
+        if command[0].startswith('m') and len(command) == 3:
             c = split_str(command[1])
             n = split_str(command[2])
-            piece = get_location(self.board.board, c)
+            try:
+                piece = get_location(self.board.board, c)
+            except ValueError:
+                print('Invalid coordinates')
+                return
+
+            # move piece and change turn
             if self.white:
                 if piece not in self.board.white:
                     print('You can only move a white piece')
-                    self.cli()
-                move = move_piece(self.board, c, n)
-                if move:
-                    self.white = False
+                    return
+                try:
+                    if move_piece(self.board, c, n):
+                        self.white = False
+                    else:
+                        print('Invalid move')
+                except ValueError:
+                    print('Invalid coordinates')
+                    return
             else:
                 if piece not in self.board.black:
                     print('You can only move a black piece')
-                    self.cli()
-                move = move_piece(self.board, c, n)
-                if move:
-                    self.white = True
+                    return
+                try:
+                    if move_piece(self.board, c, n):
+                        self.white = True
+                    else:
+                        print('Invalid move')
+                except ValueError:
+                    print('Invalid coordinates')
+                    return
         
-        elif command == 'path':
+        elif command[0] == 'path':
             print(get_path_between_points([8, 0], [1, 7]))
 
-        elif command == 'q':
+        elif command[0] == 'q':
             exit()
             
         else:
-            print('invalid command')
-
-        self.cli()
-    
+            print('Invalid command')
