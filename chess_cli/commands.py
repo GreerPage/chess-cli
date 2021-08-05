@@ -18,8 +18,12 @@ class game:
     
     def cli(self):
         print()
-        prompt = "White's move " if self.white else "Black's move "
-        command = input(prompt)
+        prompt = "White's move: " if self.white else "Black's move: "
+        try:
+            command = input(prompt)
+        except KeyboardInterrupt:
+            exit()
+        print()
 
         if command.startswith('m'):
             command = command.split()

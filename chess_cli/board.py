@@ -5,7 +5,8 @@ from .utils import coords_to_index
 
 #class for the game board
 class board:   
-    def __init__(self):
+    def __init__(self, color=True):
+        self.color = color 
         # set white side
         self.white = [P(['a', 2]), P(['b', 2]), P(['c', 2]), P(['d', 2]), P(['e', 2]), P(['f', 2]), P(['g', 2]), P(['h', 2]), 
         R(['a', 1]), N(['b', 1]), B(['c', 1]), Q(['d', 1]), K(['e', 1]), B(['f', 1]), N(['g', 1]), R(['h', 1])]
@@ -30,7 +31,13 @@ class board:
     def draw(self):
         for row in self.board:
             for piece in row:
-                print(piece, end='')
+                if self.color:
+                    if piece in self.white:
+                        print(f'\033[30;107m{piece}\033[0m', end='')
+                    else:
+                        print(f'\033[40;97m{piece}\033[0m', end='')
+                else:
+                    print(piece, end='')
             print()
     
     # update the board matrix when a move is determined to be valid
